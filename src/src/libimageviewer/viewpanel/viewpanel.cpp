@@ -60,7 +60,7 @@
 #include "service/imagedataservice.h"
 
 const QString IMAGE_TMPPATH =   QDir::homePath() +
-                                "/.config/deepin/deepin-image-viewer/";
+                                "/.config/cherryimg/";
 
 const int BOTTOM_TOOLBAR_HEIGHT = 80;   //底部工具看高
 const int BOTTOM_SPACING = 10;          //底部工具栏与底部边缘距离

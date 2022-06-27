@@ -48,7 +48,7 @@
 
 #include "mainwindow/mainwindow.h"
 #include "application.h"
-#define PLUGINTRANSPATH "/usr/share/deepin-image-viewer/translations"
+#define PLUGINTRANSPATH "/usr/share/cherryimg/translations"
 //using namespace Dtk::Core;
 
 // 最小宽高
@@ -60,7 +60,7 @@ bool checkOnly()
 {
     //single
     QString userName = QDir::homePath().section("/", -1, -1);
-    std::string path = ("/home/" + userName + "/.cache/deepin/deepin-image-viewer/").toStdString();
+    std::string path = ("/home/" + userName + "/.cache/cherryimg/cherryimg/").toStdString();
     QDir tdir(path.c_str());
     if (!tdir.exists()) {
         bool ret =  tdir.mkpath(path.c_str());
@@ -144,10 +144,10 @@ int main(int argc, char *argv[])
     a.setAttribute(Qt::AA_ForceRasterWidgets);
     a.setAttribute(Qt::AA_UseHighDpiPixmaps);
     a.setOrganizationName("deepin");
-    a.setApplicationName("deepin-image-viewer");
+    a.setApplicationName("cherryimg");
 //    a.loadTranslator();
     a.setApplicationDisplayName(QObject::tr("Image Viewer"));
-//    a.setProductIcon(QIcon::fromTheme("deepin-image-viewer"));
+//    a.setProductIcon(QIcon::fromTheme("cherryimg"));
 //    a.setApplicationDescription(QObject::tr("Image Viewer is an image viewing tool with fashion interface and smooth performance."));
 //    a.loadTranslator();
     //save theme

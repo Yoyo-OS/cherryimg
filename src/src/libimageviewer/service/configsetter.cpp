@@ -26,9 +26,9 @@
 #include <QProcess>
 
 const QString CONFIG_PATH =   QDir::homePath() +
-                              "/.config/deepin/deepin-image-viewer/config.conf";
+                              "/.config/cherryimg/config.conf";
 const QString DB_PATH = QDir::homePath() +
-                        "/.local/share/deepin/deepin-image-viewer/deepinimageviewer.db";
+                        "/.local/share/cherryimg/cherryimg.db";
 
 LibConfigSetter::LibConfigSetter(QObject *parent) : QObject(parent)
 {

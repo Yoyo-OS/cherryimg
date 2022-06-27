@@ -48,7 +48,7 @@
 #define SAVESETTING_TIMER 200
 
 const QString CONFIG_PATH =   QDir::homePath() +
-                              "/.config/deepin/deepin-image-viewer/config.conf";
+                              "/.config/cherryimg/config.conf";
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -69,7 +69,7 @@ void MainWindow::setDMainWindow(QMainWindow *mainwidow)
 {
     if (mainwidow) {
         m_mainwidow = mainwidow;
-//        m_mainwidow->titlebar()->setIcon(QIcon::fromTheme("deepin-image-viewer"));
+//        m_mainwidow->titlebar()->setIcon(QIcon::fromTheme("cherryimg"));
         m_mainwidow->installEventFilter(this);
     }
 }
@@ -269,7 +269,7 @@ void MainWindow::initUI()
             m_mainwidow->showNormal();
             //隐藏原有DMainWindow titlebar，使用自定义标题栏
 //            m_mainwidow->titlebar()->setFixedHeight(50);
-//            m_mainwidow->titlebar()->setIcon(QIcon::fromTheme("deepin-image-viewer"));
+//            m_mainwidow->titlebar()->setIcon(QIcon::fromTheme("cherryimg"));
 //            m_mainwidow->setTitlebarShadowEnabled(true);
             int normalheight = m_mainwidow->height() + 1;
             m_mainwidow->resize(m_mainwidow->width(), normalheight);
@@ -311,7 +311,7 @@ void MainWindow::slotOpenImg()
 //        {
 //            //隐藏原有DMainWindow titlebar，使用自定义标题栏
 //            m_mainwidow->titlebar()->setFixedHeight(0);
-//            m_mainwidow->titlebar()->setIcon(QIcon::fromTheme("deepin-image-viewer"));
+//            m_mainwidow->titlebar()->setIcon(QIcon::fromTheme("cherryimg"));
 //            m_mainwidow->setTitlebarShadowEnabled(true);
 //            //全屏的情况不用切换大小
 //            if (!window()->isFullScreen()) {
@@ -346,7 +346,7 @@ bool MainWindow::slotDrogImg(const QStringList &paths)
 //        if (m_mainwidow && m_mainwidow->titlebar()) {
 //            //隐藏原有DMainWindow titlebar，使用自定义标题栏
 //            m_mainwidow->titlebar()->setFixedHeight(0);
-//            m_mainwidow->titlebar()->setIcon(QIcon::fromTheme("deepin-image-viewer"));
+//            m_mainwidow->titlebar()->setIcon(QIcon::fromTheme("cherryimg"));
 //            m_mainwidow->setTitlebarShadowEnabled(true);
 //            //全屏的情况不用切换大小
 //            if (!window()->isFullScreen()) {

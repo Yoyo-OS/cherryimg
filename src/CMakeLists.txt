@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-project(deepin-image-viewer VERSION 1.0.0)
+project(cherryimg VERSION 1.0.0)
 
 ##"option"用来定义宏，"ON"表示打开，"OFF"表示关闭
 #option (LITE_DIV "Use tutorial provided math implementation" ON)
@@ -25,8 +25,8 @@ if (CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "sw_64")
     SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mieee")
 endif()
 
-set(TARGET_NAME deepin-image-viewer)
-set(CMD_NAME deepin-image-viewer)
+set(TARGET_NAME cherryimg)
+set(CMD_NAME cherryimg)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
@@ -99,31 +99,31 @@ add_definitions( -DNOUSE_TEST )
 #install
 set(PREFIX  /usr)
 set(BINDIR  ${PREFIX}/bin)
-set(APPSHAREDIR  ${PREFIX}/share/deepin-image-viewer)
-set(MANDIR  ${PREFIX}/share/dman/deepin-image-viewer)
+set(APPSHAREDIR  ${PREFIX}/share/cherryimg)
+set(MANDIR  ${PREFIX}/share/dman/cherryimg)
 set(MANICONDIR  ${PREFIX}/share/icons/hicolor/scalable/apps)
 set(APPICONDIR  ${PREFIX}/share/icons/hicolor/scalable/apps)
 
 install(TARGETS ${TARGET_NAME} DESTINATION ${BINDIR})
 #desktop
-install(FILES ${PROJECT_SOURCE_DIR}/deepin-image-viewer.desktop
+install(FILES ${PROJECT_SOURCE_DIR}/cherryimg.desktop
     DESTINATION /usr/share/applications)
 #icons
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/assets/images/
-    DESTINATION /usr/share/deepin-image-viewer/icons
+    DESTINATION /usr/share/cherryimg/icons
     FILES_MATCHING PATTERN "*")
 ##manual
-#install(DIRECTORY ${PROJECT_SOURCE_DIR}/assets/deepin-image-viewer
+#install(DIRECTORY ${PROJECT_SOURCE_DIR}/assets/cherryimg
 #    DESTINATION /usr/share/deepin-manual/manual-assets/application/
 #    FILES_MATCHING PATTERN "*")
 #manual_icon
-install(FILES ${PROJECT_SOURCE_DIR}/assets/doc/common/deepin-image-viewer.svg
+install(FILES ${PROJECT_SOURCE_DIR}/assets/doc/common/cherryimg.svg
     DESTINATION /usr/share/icons/hicolor/scalable/apps)
 #app_icon
-install(FILES ${PROJECT_SOURCE_DIR}/assets/images/logo/deepin-image-viewer.svg
+install(FILES ${PROJECT_SOURCE_DIR}/assets/images/logo/cherryimg.svg
     DESTINATION /usr/share/icons/hicolor/scalable/apps)
 #dbus_service
-install(FILES ${PROJECT_SOURCE_DIR}/com.deepin.ImageViewer.service
+install(FILES ${PROJECT_SOURCE_DIR}/com.cherry.img.service
     DESTINATION /usr/share/dbus-1/services)
 #translations
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/translations

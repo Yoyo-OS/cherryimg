@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-project(deepin-image-viewer)
+project(cherryimg)
 
 execute_process(COMMAND uname -m OUTPUT_VARIABLE MACH
     ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
