@@ -270,7 +270,7 @@ void LibViewPanel::initTopBar()
 void LibViewPanel::initOcr()
 {
     if (!m_ocrInterface) {
-        m_ocrInterface = new OcrInterface("com.deepin.Ocr", "/com/deepin/Ocr", QDBusConnection::sessionBus(), this);
+        m_ocrInterface = new OcrInterface("com.durian.Ocr", "/com/durian/Ocr", QDBusConnection::sessionBus(), this);
     }
 }
 

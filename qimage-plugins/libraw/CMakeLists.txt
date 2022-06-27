@@ -1,6 +1,6 @@
-project(xraw VERSION 0.1.0)
+project(qraw VERSION 0.1.0)
 set(CMAKE_AUTOMOC ON)
-set(CMD_NAME xraw)
+set(CMD_NAME qraw)
 #set(CMAKE_CXX_STANDARD 11)
 
 
@@ -40,7 +40,7 @@ add_library(${CMD_NAME} SHARED ${SRCS})
 set_target_properties(${CMD_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
 #target_compile_definitions(${CMD_NAME} PRIVATE BUILDING_${CMD_NAME})
 
-target_include_directories(xraw PUBLIC ${RAW_INCLUDE_DIRS}  ${Qt5Gui_INCLUDE_DIRS} ${Qt5Core_INCLUDE_DIRS} )
+target_include_directories(qraw PUBLIC ${RAW_INCLUDE_DIRS}  ${Qt5Gui_INCLUDE_DIRS} ${Qt5Core_INCLUDE_DIRS} )
 
 target_link_libraries(${CMD_NAME} Qt5::Core Qt5::Gui raw)
 

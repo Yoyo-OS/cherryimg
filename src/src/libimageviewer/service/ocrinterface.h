@@ -39,7 +39,7 @@ class OcrInterface: public QDBusAbstractInterface
 public:
     static inline const char *staticInterfaceName()
     {
-        return "com.deepin.Ocr";
+        return "com.durian.Ocr";
     }
 
 public:
