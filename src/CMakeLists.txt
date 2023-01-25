@@ -57,7 +57,7 @@ set(PROJECT_INCLUDE
     ${PROJECT_SOURCE_DIR}/src/module
     )
 
-set(QtModule Core Gui Svg Widgets DBus PrintSupport LinguistTools Concurrent)
+set(QtModule Core Gui Quick QuickWidgets Svg Widgets DBus PrintSupport LinguistTools Concurrent)
 
 #先查找到这些qt相关的模块以供链接使用
 find_package(Qt5 REQUIRED ${QtModule})

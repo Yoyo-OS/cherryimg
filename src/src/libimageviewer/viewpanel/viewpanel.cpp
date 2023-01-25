@@ -89,7 +89,6 @@ QString ss(const QString &text, const QString &defaultValue)
 
 LibViewPanel::LibViewPanel(AbstractTopToolbar *customToolbar, QWidget *parent)
     : QFrame(parent)
-    , m_topToolbar(customToolbar)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -107,7 +106,7 @@ LibViewPanel::LibViewPanel(AbstractTopToolbar *customToolbar, QWidget *parent)
 
     initRightMenu();
     initFloatingComponent();
-    initTopBar();
+
     initShortcut();
     initLockPanel();
     initThumbnailWidget();
@@ -141,16 +140,11 @@ LibViewPanel::~LibViewPanel()
         m_bottomToolbar->deleteLater();
         m_bottomToolbar = nullptr;
     }
-    if (m_topToolbar) {
-        m_topToolbar->deleteLater();
-        m_topToolbar = nullptr;
-    }
 }
 
 void LibViewPanel::loadImage(const QString &path, QStringList paths)
 {
     QFileInfo info(path);
-    m_topToolbar->setMiddleContent(info.fileName());
     //展示图片
 //    m_view->setImage(path);
 //    m_view->resetTransform();
@@ -219,7 +213,6 @@ void LibViewPanel::initConnect()
 
     connect(m_view, &LibImageGraphicsView::sigImageOutTitleBar, this, &LibViewPanel::slotsImageOutTitleBar);
 
-//    connect(m_view, &LibImageGraphicsView::sigImageOutTitleBar, m_topToolbar, &AbstractTopToolbar::setTitleBarTransparent);
 
     connect(m_view, &LibImageGraphicsView::sigMouseMove, this, &LibViewPanel::slotBottomMove);
     connect(m_view, &LibImageGraphicsView::sigClicked, this, &LibViewPanel::slotChangeShowTopBottom);
@@ -251,27 +244,6 @@ void LibViewPanel::initConnect()
 
     m_dirWatcher = new  QFileSystemWatcher(this);
     connect(m_dirWatcher, &QFileSystemWatcher::directoryChanged, this, &LibViewPanel::slotsDirectoryChanged);
-}
-
-void LibViewPanel::initTopBar()
-{
-    //防止在标题栏右键菜单会触发默认的和主窗口的发生
-    if (m_topToolbar == nullptr) { //如果调用者没有指定有效的顶部栏，则使用内置方案
-        m_topToolbar = new LibTopToolbar(false, dynamic_cast<QWidget *>(this->parent()));
-        connect(m_topToolbar, &LibTopToolbar::sigLeaveTitle, this, &LibViewPanel::slotBottomMove);
-    } else {
-        m_topToolbar->setParent(dynamic_cast<QWidget *>(this->parent()));
-    }
-    m_topToolbar->resize(width(), 50);
-    m_topToolbar->move(0, 0);
-    m_topToolbar->setTitleBarTransparent(false);
-}
-
-void LibViewPanel::initOcr()
-{
-    if (!m_ocrInterface) {
-        m_ocrInterface = new OcrInterface("com.durian.Ocr", "/com/durian/Ocr", QDBusConnection::sessionBus(), this);
-    }
 }
 
 void LibViewPanel::initFloatingComponent()
@@ -925,14 +897,6 @@ bool LibViewPanel::startdragImage(const QStringList &paths, const QString &first
     return bRet;
 }
 
-void LibViewPanel::setTopBarVisible(bool visible)
-{
-    if (m_topToolbar) {
-        m_topToolBarIsAlwaysHide = !visible;
-        m_topToolbar->setVisible(visible);
-    }
-}
-
 void LibViewPanel::setBottomtoolbarVisible(bool visible)
 {
     if (m_bottomToolbar) {
@@ -960,7 +924,6 @@ void LibViewPanel::showTopBottom()
     int nParentWidth = this->width();
     int nParentHeight = this->height();
     m_bottomToolbar->move(QPoint((nParentWidth - m_bottomToolbar->width()) / 2, nParentHeight - m_bottomToolbar->height() - 10));
-    m_topToolbar->move(QPoint((nParentWidth - m_topToolbar->width()) / 2, 0));
 }
 
 void LibViewPanel::showAnimationTopBottom()
@@ -982,20 +945,6 @@ void LibViewPanel::showAnimationTopBottom()
         m_bottomAnimation = nullptr;
     });
     m_bottomAnimation->start();
-    //m_topBarAnimation 出来
-    m_topBarAnimation = new QPropertyAnimation(m_topToolbar, "pos", this);
-    m_topBarAnimation->setDuration(200);
-    //m_topBarAnimation->setEasingCurve(QEasingCurve::NCurveTypes);
-
-    m_topBarAnimation->setStartValue(
-        QPoint((nParentWidth - m_topToolbar->width()) / 2, m_topToolbar->y()));
-    m_topBarAnimation->setEndValue(QPoint((nParentWidth - m_topToolbar->width()) / 2, 0));
-
-    connect(m_topBarAnimation, &QPropertyAnimation::finished, this, [ = ]() {
-        delete m_topBarAnimation;
-        m_topBarAnimation = nullptr;
-    });
-    m_topBarAnimation->start();
 }
 
 void LibViewPanel::hideTopBottom()
@@ -1003,7 +952,6 @@ void LibViewPanel::hideTopBottom()
     int nParentWidth = this->width();
     int nParentHeight = this->height();
     m_bottomToolbar->move(QPoint((nParentWidth - m_bottomToolbar->width()) / 2, nParentHeight));
-    m_topToolbar->move(QPoint((nParentWidth - m_topToolbar->width()) / 2,  - 100));
 }
 
 void LibViewPanel::hideAnimationTopBottom()
@@ -1023,20 +971,6 @@ void LibViewPanel::hideAnimationTopBottom()
         m_bottomAnimation = nullptr;
     });
     m_bottomAnimation->start();
-
-    m_topBarAnimation = new QPropertyAnimation(m_topToolbar, "pos", this);
-    m_topBarAnimation->setDuration(200);
-    //m_topBarAnimation->setEasingCurve(QEasingCurve::NCurveTypes);
-
-    m_topBarAnimation->setStartValue(
-        QPoint((nParentWidth - m_topToolbar->width()) / 2, m_topToolbar->y()));
-    m_topBarAnimation->setEndValue(QPoint((nParentWidth - m_topToolbar->width()) / 2,  - 100));
-
-    connect(m_topBarAnimation, &QPropertyAnimation::finished, this, [ = ]() {
-        delete m_topBarAnimation;
-        m_topBarAnimation = nullptr;
-    });
-    m_topBarAnimation->start();
 }
 
 void LibViewPanel::loadThumbnails(const QString &path)
@@ -1132,9 +1066,6 @@ void LibViewPanel::setCurrentWidget(const QString &path)
 void LibViewPanel::slotsImageOutTitleBar(bool bRet)
 {
     if (m_ImageOutTitleBar != bRet) {
-        if (m_topToolbar) {
-            m_topToolbar->setTitleBarTransparent(bRet);
-        }
         m_ImageOutTitleBar = bRet;
         slotBottomMove();
     }
@@ -1254,7 +1185,7 @@ void LibViewPanel::slotBottomMove()
     int nParentHeight = this->height();
 
     //如果没有显示则不执行动画
-    if (m_bottomToolbar && m_bottomToolbar->isVisible() && m_topToolbar && m_stack->currentWidget() != m_sliderPanel) {
+    if (m_bottomToolbar && m_bottomToolbar->isVisible() && m_stack->currentWidget() != m_sliderPanel) {
         if (window()->isFullScreen() || m_ImageOutTitleBar) {
 
             if ((/*m_stack->currentWidget() != m_sliderPanel &&*/ (((nParentHeight - (10 + m_bottomToolbar->height()) < pos.y() && nParentHeight > pos.y() && nParentHeight == m_bottomToolbar->y()) || (pos.y() < 50 && pos.y() >= 0)) && ((pos.x() > 2)) && (pos.x() < nParentWidth - 2)))) {
@@ -1292,7 +1223,7 @@ void LibViewPanel::noAnimationBottomMove()
     int nParentWidth = this->width();
     int nParentHeight = this->height();
 
-    if (m_bottomToolbar && m_topToolbar) {
+    if (m_bottomToolbar) {
 
         if (window()->isFullScreen() || m_ImageOutTitleBar) {
 
@@ -1369,36 +1300,30 @@ void LibViewPanel::setIsCustomAlbumWithUID(bool isCustom, const QString &album, 
 void LibViewPanel::slotChangeShowTopBottom()
 {
     m_isShowTopBottom = !m_isShowTopBottom;
-    qDebug() << m_topToolbar->geometry();
     qDebug() << m_bottomToolbar->geometry();
-    if (m_topToolbar->geometry().y() < 0 && m_topToolbar->geometry().y() > -100) {
-        m_isShowTopBottom = true;
-    }
+    m_isShowTopBottom = true;
     slotBottomMove();
 }
 
 bool LibViewPanel::slotOcrPicture()
 {
-    if (!m_ocrInterface) {
-        initOcr();
-    }
     QString path = m_bottomToolbar->getCurrentItemInfo().path;
-    //图片过大，会导致崩溃，超过4K，智能裁剪
-    if (m_ocrInterface != nullptr && m_view != nullptr) {
-        QImage image = m_view->image();
-        if (image.width() > 2500) {
-            image = image.scaledToWidth(2500, Qt::SmoothTransformation);
-        }
-        if (image.height() > 2500) {
-            image = image.scaledToHeight(2500, Qt::SmoothTransformation);
-        }
-        //替换为了保存为文件,用路径去打开ocr
-        QFileInfo info(path);
-        qDebug() << info.completeBaseName();
-        QString savePath = IMAGE_TMPPATH + info.completeBaseName() + ".png";
-        image.save(savePath);
-        //采用路径，以防止名字出错
-        m_ocrInterface->openFile(savePath);
+    QImage image = m_view->image();
+    if (image.width() > 2500) {
+        image = image.scaledToWidth(2500, Qt::SmoothTransformation);
+    }
+    if (image.height() > 2500) {
+        image = image.scaledToHeight(2500, Qt::SmoothTransformation);
+    }
+    //替换为了保存为文件,用路径去打开ocr
+    QFileInfo info(path);
+    qDebug() << info.completeBaseName();
+    QString savePath = IMAGE_TMPPATH + info.completeBaseName() + ".png";
+    bool saved = image.save(savePath);
+    //采用路径，以防止名字出错
+    if (saved) {
+        QProcess process(this);
+        process.startDetached("yoyo-ocr "+savePath);
     }
     return false;
 }
@@ -1655,13 +1580,10 @@ void LibViewPanel::onMenuItemClicked(QAction *action)
                 bool bOk = file.rename(filepath);
                 if (bOk) {
                     //to文件改变后做的事情
-                    if (m_topToolbar) {
-                        m_topToolbar->setMiddleContent(filename);
                         LibCommonService::instance()->reName(oldPath, filepath);
                         //重新打开该图片
                         m_bottomToolbar->setCurrentPath(filepath);
                         openImg(0, filepath);
-                    }
                 }
             }
             if (m_dirWatcher) {
@@ -1890,7 +1812,6 @@ void LibViewPanel::openImg(int index, QString path)
     m_view->setImage(path);
     m_view->resetTransform();
     QFileInfo info(path);
-    m_topToolbar->setMiddleContent(info.fileName());
     m_currentPath = path;
     //刷新收藏按钮
 //    qDebug() << index;
@@ -1956,21 +1877,6 @@ void LibViewPanel::resizeEvent(QResizeEvent *e)
         m_topBarAnimation->deleteLater();
         m_topBarAnimation = nullptr;
     }
-    if (this->m_topToolbar) {
-
-        if (window()->isFullScreen()) {
-            this->m_topToolbar->setVisible(false);
-
-        } else {
-            if (!m_topToolBarIsAlwaysHide) {
-                this->m_topToolbar->setVisible(true);
-            }
-        }
-
-        if (m_topToolbar->isVisible()) {
-            this->m_topToolbar->resize(width(), 50);
-        }
-    }
 //    resetBottomToolbarGeometry(m_stack->currentWidget() == m_view);
     resetBottomToolbarGeometry(true);
     QFrame::resizeEvent(e);
@@ -1984,9 +1890,6 @@ void LibViewPanel::resizeEvent(QResizeEvent *e)
 
 void LibViewPanel::showEvent(QShowEvent *e)
 {
-    if (this->m_topToolbar) {
-        m_topToolbar->resize(width(), 50);
-    }
     //显示的时候需要判断一次滑动
     noAnimationBottomMove();
 //    resetBottomToolbarGeometry(m_stack->currentWidget() == m_view);

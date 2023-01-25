@@ -62,9 +62,6 @@ public:
 
     void initConnect();
     //初始化标题栏
-    void initTopBar();
-    //初始化ocr
-    void initOcr();
     //初始化缩放比和导航窗口
     void initFloatingComponent();
     //初始化缩放比例的窗口
@@ -110,9 +107,6 @@ public:
 
     //drag事件打开图片
     bool startdragImage(const QStringList &paths, const QString &firstPath = "");
-
-    //设置topBar的显示和隐藏
-    void setTopBarVisible(bool visible);
 
     //设置Bottomtoolbar的显示和隐藏
     void setBottomtoolbarVisible(bool visible);
@@ -229,7 +223,6 @@ private:
     //ocr接口
     OcrInterface *m_ocrInterface{nullptr};
 
-    AbstractTopToolbar *m_topToolbar = nullptr;
     bool m_topToolBarIsAlwaysHide = false;
 
     QMenu *m_menu = nullptr;

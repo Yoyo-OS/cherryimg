@@ -79,7 +79,6 @@ void LibTopToolbar::setMiddleContent(const QString &path)
 void LibTopToolbar::setTitleBarTransparent(bool a)
 {
     m_viewChange = a;
-
 //    DGuiApplicationHelper::ColorType themeType = DGuiApplicationHelper::instance()->themeType();
     QPalette pa1, pa2;
     if (a) {

@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 11), cmake, qtbase5-dev, pkg-config,libexif-dev, li
 Standards-Version: 3.9.8
 Homepage: http://www.deepin.org
 
-Package: cherryimg
+Package: yoyo-cherryimg
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Image Viewer is an image viewing tool with fashion interface and smooth performance.

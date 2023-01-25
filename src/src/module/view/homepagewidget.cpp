@@ -31,6 +31,14 @@ HomePageWidget::HomePageWidget(QWidget *parent)
     grabGesture(Qt::PanGesture);
     setAcceptDrops(true);
     setMouseTracking(true);
+
+    QPalette pal(this->palette());
+
+    pal.setColor(QPalette::Background, QColor("#FFFFFF"));
+    this->setAutoFillBackground(true);
+    this->setPalette(pal);
+
+
     m_thumbnailLabel = new QLabel(this);
     //    m_thumbnailLabel->setObjectName("ThumbnailLabel");
     m_thumbnailLabel->setFixedSize(THUMBNAIL_BORDERSIZE);

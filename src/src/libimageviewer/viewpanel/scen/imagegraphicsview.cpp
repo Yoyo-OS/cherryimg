@@ -760,7 +760,7 @@ void LibImageGraphicsView::onThemeTypeChanged()
 {
 
 //    m_backgroundColor = Libutils::common::LIGHT_BACKGROUND_COLOR;
-    m_backgroundColor = QColor("#F8F8F8");
+    m_backgroundColor = QColor("#FFFFFF");
 
     update();
 }

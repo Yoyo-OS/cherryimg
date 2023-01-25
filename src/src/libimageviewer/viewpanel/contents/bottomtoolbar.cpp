@@ -655,7 +655,7 @@ void LibBottomToolbar::initUI()
     m_backButton->setFixedSize(ICON_SIZE);
 //    AC_SET_OBJECT_NAME(m_backButton, BottomToolbar_Back_Button);
 //    AC_SET_ACCESSIBLE_NAME(m_backButton, BottomToolbar_Back_Button);
-    m_backButton->setIcon(QIcon::fromTheme("dcc_back"));
+    m_backButton->setIcon(QIcon(":/icons/deepin/builtin/texts/dcc_back_36px.svg"));
     m_backButton->setIconSize(QSize(36, 36));
     m_backButton->setToolTip(QObject::tr("Back"));
     setButtonVisible(imageViewerSpace::ButtonTypeBack, false);
@@ -673,7 +673,7 @@ void LibBottomToolbar::initUI()
 //    AC_SET_OBJECT_NAME(m_preButton, BottomToolbar_Pre_Button);
 //    AC_SET_ACCESSIBLE_NAME(m_preButton, BottomToolbar_Pre_Button);
     m_preButton->setFixedSize(ICON_SIZE);
-    m_preButton->setIcon(QIcon::fromTheme("dcc_previous"));
+    m_preButton->setIcon(QIcon(":/icons/deepin/builtin/texts/dcc_previous_36px.svg"));
     m_preButton->setIconSize(QSize(36, 36));
     m_preButton->setToolTip(QObject::tr("Previous"));
     m_preButton->hide();
@@ -684,7 +684,7 @@ void LibBottomToolbar::initUI()
 //    AC_SET_OBJECT_NAME(m_nextButton, BottomToolbar_Next_Button);
 //    AC_SET_ACCESSIBLE_NAME(m_nextButton, BottomToolbar_Next_Button);
     m_nextButton->setFixedSize(ICON_SIZE);
-    m_nextButton->setIcon(QIcon::fromTheme("dcc_next"));
+    m_nextButton->setIcon(QIcon(":/icons/deepin/builtin/texts/dcc_next_36px.svg"));
     m_nextButton->setIconSize(QSize(36, 36));
     m_nextButton->setToolTip(QObject::tr("Next"));
     m_nextButton->hide();
@@ -698,7 +698,7 @@ void LibBottomToolbar::initUI()
 //    AC_SET_OBJECT_NAME(m_adaptImageBtn, BottomToolbar_AdaptImg_Button);
 //    AC_SET_ACCESSIBLE_NAME(m_adaptImageBtn, BottomToolbar_AdaptImg_Button);
     m_adaptImageBtn->setFixedSize(ICON_SIZE);
-    m_adaptImageBtn->setIcon(QIcon::fromTheme("dcc_11"));
+    m_adaptImageBtn->setIcon(QIcon(":/icons/deepin/builtin/texts/dcc_11_36px.svg"));
     m_adaptImageBtn->setIconSize(QSize(36, 36));
     m_adaptImageBtn->setToolTip(QObject::tr("1:1 Size"));
     m_adaptImageBtn->setCheckable(true);
@@ -709,7 +709,7 @@ void LibBottomToolbar::initUI()
     m_adaptScreenBtn->setFixedSize(ICON_SIZE);
 //    AC_SET_OBJECT_NAME(m_adaptScreenBtn, BottomToolbar_AdaptScreen_Button);
 //    AC_SET_ACCESSIBLE_NAME(m_adaptScreenBtn, BottomToolbar_AdaptScreen_Button);
-    m_adaptScreenBtn->setIcon(QIcon::fromTheme("dcc_fit"));
+    m_adaptScreenBtn->setIcon(QIcon(":/icons/deepin/builtin/texts/dcc_fit_36px.svg"));
     m_adaptScreenBtn->setIconSize(QSize(36, 36));
     m_adaptScreenBtn->setToolTip(QObject::tr("Fit to window"));
 //    m_adaptScreenBtn->setCheckable(true);
@@ -725,7 +725,7 @@ void LibBottomToolbar::initUI()
     //ocr
     m_ocrBtn = new QToolButton(this);
     m_ocrBtn->setFixedSize(ICON_SIZE);
-    m_ocrBtn->setIcon(QIcon::fromTheme("dcc_ocr"));
+    m_ocrBtn->setIcon(QIcon(":/icons/deepin/builtin/texts/dcc_ocr_36px.svg"));
     m_ocrBtn->setIconSize(QSize(36, 36));
     m_ocrBtn->setToolTip(QObject::tr("Extract text"));
     hb->addWidget(m_ocrBtn);
@@ -735,7 +735,7 @@ void LibBottomToolbar::initUI()
 //    AC_SET_OBJECT_NAME(m_rotateLBtn, BottomToolbar_Rotate_Left_Button);
 //    AC_SET_ACCESSIBLE_NAME(m_rotateLBtn, BottomToolbar_Rotate_Left_Button);
     m_rotateLBtn->setFixedSize(ICON_SIZE);
-    m_rotateLBtn->setIcon(QIcon::fromTheme("dcc_left"));
+    m_rotateLBtn->setIcon(QIcon(":/icons/deepin/builtin/texts/dcc_left_36px.svg"));
     m_rotateLBtn->setIconSize(QSize(36, 36));
     m_rotateLBtn->setToolTip(QObject::tr("Rotate counterclockwise"));
     hb->addWidget(m_rotateLBtn);
@@ -745,7 +745,7 @@ void LibBottomToolbar::initUI()
 //    AC_SET_OBJECT_NAME(m_rotateRBtn, BottomToolbar_Rotate_Right_Button);
 //    AC_SET_ACCESSIBLE_NAME(m_rotateRBtn, BottomToolbar_Rotate_Right_Button);
     m_rotateRBtn->setFixedSize(ICON_SIZE);
-    m_rotateRBtn->setIcon(QIcon::fromTheme("dcc_right"));
+    m_rotateRBtn->setIcon(QIcon(":/icons/deepin/builtin/texts/dcc_right_36px.svg"));
     m_rotateRBtn->setIconSize(QSize(36, 36));
     m_rotateRBtn->setToolTip(QObject::tr("Rotate clockwise"));
     hb->addWidget(m_rotateRBtn);
@@ -769,7 +769,7 @@ void LibBottomToolbar::initUI()
     m_trashBtn->setFixedSize(ICON_SIZE);
 //    AC_SET_OBJECT_NAME(m_trashBtn, BottomToolbar_Trash_Button);
 //    AC_SET_ACCESSIBLE_NAME(m_trashBtn, BottomToolbar_Trash_Button);
-    m_trashBtn->setIcon(QIcon::fromTheme("dcc_delete"));
+    m_trashBtn->setIcon(QIcon(":/icons/deepin/builtin/icons/dcc_delete_36px.svg"));
     m_trashBtn->setIconSize(QSize(36, 36));
     m_trashBtn->setToolTip(QObject::tr("Delete"));
     hb->addWidget(m_trashBtn);

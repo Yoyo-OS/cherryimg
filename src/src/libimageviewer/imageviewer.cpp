@@ -143,14 +143,6 @@ void ImageViewer::startSlideShow(const QStringList &paths, const QString &firstP
     d->m_panel->startSlideShow(info);
 }
 
-void ImageViewer::setTopBarVisible(bool visible)
-{
-    Q_D(ImageViewer);
-    if (d->m_panel) {
-        d->m_panel->setTopBarVisible(visible);
-    }
-}
-
 void ImageViewer::setBottomtoolbarVisible(bool visible)
 {
     Q_D(ImageViewer);
